@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RepositoryUrl>https://github.com/jayrowe/TimeMachine</RepositoryUrl>
+    <Description>Wrapper around DateTime.UtcNow with hooks that are suitable for manipulating the flow of time during testing scenarios. Useful for testing code that requires actions that take place at some real-world intervals without including long delays in the tests.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\netstandard2.0\TimeMachine.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Debug\netstandard2.0\TimeMachine.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>

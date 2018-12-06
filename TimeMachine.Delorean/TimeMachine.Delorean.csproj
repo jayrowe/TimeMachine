@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>TimeMachine</RootNamespace>
+    <RepositoryUrl>https://github.com/jayrowe/TimeMachine</RepositoryUrl>
+    <Description>Hooks for manipulating the flow of time during testing scenarios when using TimeMachine. Useful for testing code that requires actions that take place at some real-world intervals without including long delays in the tests.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeMachine\TimeMachine.csproj" />
+  </ItemGroup>
+
+</Project>
