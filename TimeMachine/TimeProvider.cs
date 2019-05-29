@@ -14,7 +14,7 @@ namespace TimeMachine
         private static DateTime _staticNow;
 
         private static readonly object _lock = new object();
-        private static LinkedList<IChilly> _callbacks = new LinkedList<IChilly>();
+        private static LinkedList<IFrozen> _callbacks = new LinkedList<IFrozen>();
 
         internal static void Freeze()
         {
@@ -83,12 +83,12 @@ namespace TimeMachine
             }
         }
 
-        internal static void Register(IChilly callback)
+        internal static void Register(IFrozen callback)
         {
-            Register(new LinkedListNode<IChilly>(callback));
+            Register(new LinkedListNode<IFrozen>(callback));
         }
 
-        internal static void Unregister(IChilly callback)
+        internal static void Unregister(IFrozen callback)
         {
             lock (_lock)
             {
@@ -96,9 +96,9 @@ namespace TimeMachine
             }
         }
 
-        private static void Register(LinkedListNode<IChilly> insert)
+        private static void Register(LinkedListNode<IFrozen> insert)
         {
-            LinkedListNode<IChilly> previous = null;
+            LinkedListNode<IFrozen> previous = null;
             var current = _callbacks.First;
 
             while (current != null && current.Value.DueTime <= insert.Value.DueTime)

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace TimeMachine
 {
-    internal class FrozenDelay : IChilly
+    internal class FrozenDelay : IFrozen
     {
         private readonly TaskCompletionSource<bool> _completionSource;
 

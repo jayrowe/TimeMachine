@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace TimeMachine
 {
-    internal class FrozenTimer : ITimer, IChilly
+    internal class FrozenTimer : ITimer, IFrozen
     {
         private const long MAX_INTERVAL_MILLISECONDS = uint.MaxValue - 1;
 

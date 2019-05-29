@@ -2,7 +2,7 @@
 
 namespace TimeMachine
 {
-    internal interface IChilly
+    internal interface IFrozen
     {
         DateTime DueTime { get; }
         bool Fire();
