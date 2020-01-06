@@ -15,7 +15,9 @@ namespace TimeMachine
 
         public FrozenTimer(TimerCallback callback)
         {
-            _callback = callback;
+            _callback = callback ?? throw new ArgumentNullException(
+                nameof(callback),
+                $"{nameof(callback)} cannot be null");
             _state = this;
 
             Change(-1, -1);
@@ -23,7 +25,9 @@ namespace TimeMachine
 
         public FrozenTimer(TimerCallback callback, object state, int dueTime, int period)
         {
-            _callback = callback;
+            _callback = callback ?? throw new ArgumentNullException(
+                nameof(callback),
+                $"{nameof(callback)} cannot be null");
             _state = state;
 
             Change(dueTime, period);
@@ -31,7 +35,9 @@ namespace TimeMachine
 
         public FrozenTimer(TimerCallback callback, object state, long dueTime, long period)
         {
-            _callback = callback;
+            _callback = callback ?? throw new ArgumentNullException(
+                nameof(callback),
+                $"{nameof(callback)} cannot be null");
             _state = state;
 
             Change(dueTime, period);
@@ -39,7 +45,9 @@ namespace TimeMachine
 
         public FrozenTimer(TimerCallback callback, object state, TimeSpan dueTime, TimeSpan period)
         {
-            _callback = callback;
+            _callback = callback ?? throw new ArgumentNullException(
+                nameof(callback),
+                $"{nameof(callback)} cannot be null");
             _state = state;
 
             Change(dueTime, period);
@@ -47,7 +55,9 @@ namespace TimeMachine
 
         public FrozenTimer(TimerCallback callback, object state, uint dueTime, uint period)
         {
-            _callback = callback;
+            _callback = callback ?? throw new ArgumentNullException(
+                nameof(callback),
+                $"{nameof(callback)} cannot be null");
             _state = state;
 
             Change(dueTime, period);

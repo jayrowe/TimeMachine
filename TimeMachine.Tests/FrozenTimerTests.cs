@@ -11,7 +11,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_CallbackIsNull()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 Assert.ThrowsException<ArgumentNullException>(() => TimeProvider.Timer(null));
                 Assert.ThrowsException<ArgumentNullException>(() => TimeProvider.Timer(null, null, 0, 0));
@@ -24,7 +24,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_NeverGetsCalled()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -46,7 +46,7 @@ namespace TimeMachine.Tests
         [DataRow(-1, -2)]
         public void Callback_Int32_Invalid(int initial, int period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => TimeProvider.Timer((state) => { }, null, initial, period));
@@ -58,7 +58,7 @@ namespace TimeMachine.Tests
         [DataRow(0)]
         public void Callback_Int32_HasInitialButNotInterval(int period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -87,7 +87,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int32_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -123,7 +123,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int32_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -149,7 +149,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int32_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -167,7 +167,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int32_MultipleIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -191,7 +191,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int32_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -213,7 +213,7 @@ namespace TimeMachine.Tests
         [DataRow(-1L, 1L + uint.MaxValue)]
         public void Callback_TimeSpan_Invalid(long initial, long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => TimeProvider.Timer((state) => { }, null, TimeSpan.FromMilliseconds(initial), TimeSpan.FromMilliseconds(period)));
@@ -225,7 +225,7 @@ namespace TimeMachine.Tests
         [DataRow(0L)]
         public void Callback_TimeSpan_HasInitialButNotInterval(long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -254,7 +254,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_TimeSpan_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -290,7 +290,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_TimeSpan_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -316,7 +316,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_TimeSpan_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -334,7 +334,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_TimeSpan_MultipleIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -358,7 +358,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_TimeSpan_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -380,7 +380,7 @@ namespace TimeMachine.Tests
         [DataRow(-1L, 1L + uint.MaxValue)]
         public void Callback_Int64_Invalid(long initial, long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => TimeProvider.Timer((state) => { }, null, initial, period));
@@ -392,7 +392,7 @@ namespace TimeMachine.Tests
         [DataRow(0L)]
         public void Callback_Int64_HasInitialButNotInterval(long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -421,7 +421,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int64_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -457,7 +457,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int64_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -483,7 +483,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int64_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -501,7 +501,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int64_MultipleIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -525,7 +525,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_Int64_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -545,7 +545,7 @@ namespace TimeMachine.Tests
         [DataRow(0u)]
         public void Callback_UInt32_HasInitialButNotInterval(uint period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -574,7 +574,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_UInt32_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -610,7 +610,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_UInt32_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -636,7 +636,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_UInt32_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -654,7 +654,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_UInt32_MultipleIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -678,7 +678,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Callback_UInt32_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -700,7 +700,7 @@ namespace TimeMachine.Tests
         [DataRow(-1L, 1L + uint.MaxValue)]
         public void Change_Int64_Invalid(long initial, long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 var timer = TimeProvider.Timer((state) => { });
@@ -713,7 +713,7 @@ namespace TimeMachine.Tests
         [DataRow(-1, -2)]
         public void Change_Int32_Invalid(int initial, int period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 var timer = TimeProvider.Timer((state) => { });
@@ -728,7 +728,7 @@ namespace TimeMachine.Tests
         [DataRow(-1L, 1L + uint.MaxValue)]
         public void Change_TimeSpan_Invalid(long initial, long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
                 var timer = TimeProvider.Timer((state) => { });
@@ -741,7 +741,7 @@ namespace TimeMachine.Tests
         [DataRow(0L)]
         public void Change_Int64_HasInitialButNotInterval(long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -761,7 +761,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int64_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -785,7 +785,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int64_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -813,7 +813,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int64_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -833,7 +833,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int64_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -855,7 +855,7 @@ namespace TimeMachine.Tests
         [DataRow(0)]
         public void Change_Int32_HasInitialButNotInterval(int period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -875,7 +875,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int32_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -899,7 +899,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int32_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -927,7 +927,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int32_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -947,7 +947,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_Int32_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -969,7 +969,7 @@ namespace TimeMachine.Tests
         [DataRow(0u)]
         public void Change_UInt32_HasInitialButNotInterval(uint period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -989,7 +989,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_UInt32_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1013,7 +1013,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_UInt32_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1041,7 +1041,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_UInt32_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1061,7 +1061,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_UInt32_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1084,7 +1084,7 @@ namespace TimeMachine.Tests
         [DataRow(0L)]
         public void Change_TimeSpan_HasInitialButNotInterval(long period)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1104,7 +1104,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_TimeSpan_HasInitialAndInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1128,7 +1128,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_TimeSpan_HasInitialGreaterThanInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1156,7 +1156,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_TimeSpan_HasInitialAndIntervalHitInSingleAdvance()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1176,7 +1176,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Change_TimeSpan_HasIntervalButNotInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1196,7 +1196,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thawed_InitialNotHit_ContinuesRealtime()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1215,7 +1215,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thawed_InitialHit_NoInterval_Stops()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1236,7 +1236,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thawed_InitialNotHit_HasInterval_UsesInitial()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             using (var evt = new AutoResetEvent(false))
             {
                 delorean.Freeze();
@@ -1257,7 +1257,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thawed_InitialHit_HasInterval_UsesInterval()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -1277,7 +1277,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thawed_Change_FunctionsAsNormalTimer()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 

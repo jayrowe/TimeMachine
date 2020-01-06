@@ -1,9 +1,31 @@
 ﻿using System;
+using System.Threading;
 
 namespace TimeMachine
 {
-    public class Delorean : IDisposable
+    public sealed class Delorean : IDisposable
     {
+        private static Delorean _current;
+
+        public Delorean()
+            : this(true)
+        {
+        }
+
+        public Delorean(bool freeze)
+        {
+            if (Interlocked.CompareExchange(ref _current, this, null) != null)
+            {
+                throw new InvalidOperationException(
+                    "Cannot run competing Deloreans");
+            }
+
+            if (freeze)
+            {
+                Freeze();
+            }
+        }
+
         public void Freeze() => TimeProvider.Freeze();
 
         public void Thaw() => TimeProvider.Thaw();
@@ -12,11 +34,18 @@ namespace TimeMachine
 
         public void Advance(int milliseconds) => TimeProvider.Advance(TimeSpan.FromMilliseconds(milliseconds));
 
-        public void Dispose() => Dispose(true);
-
-        private void Dispose(bool disposing)
+        public void Dispose()
         {
-            Thaw();
+            if (_current == this)
+            {
+                Thaw();
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+
+            Interlocked.CompareExchange(ref _current, null, this);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_IgnoresRealTime()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -78,7 +78,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_Int32_FollowsTimeAdvances()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -97,7 +97,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_TimeSpan_FollowsTimeAdvances()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -116,7 +116,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Thawed_ContinuesRealtimeBasedOnTargetTime()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -137,7 +137,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_Int32_CancellationTokenStartsCancelled()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -155,7 +155,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_Int32_CancellationTokenBecomesCancelled()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -175,7 +175,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_Int32_NoDelay_ReturnsImmediately()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -190,7 +190,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Frozen_Int32_Infinite_NeverReturns()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -205,7 +205,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Frozen_Int32_InvalidWait()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -219,7 +219,7 @@ namespace TimeMachine.Tests
         [DataRow(-1)]
         public async Task Frozen_TimeSpan_CancellationTokenStartsCancelled(double milliseconds)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -237,7 +237,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public async Task Frozen_TimeSpan_CancellationTokenBecomesCancelled()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -260,7 +260,7 @@ namespace TimeMachine.Tests
         [DataRow(-0.4999999999)]
         public async Task Frozen_TimeSpan_NoDelay_ReturnsImmediately(double milliseconds)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -278,7 +278,7 @@ namespace TimeMachine.Tests
         [DataRow(-1.49999999)]
         public void Frozen_TimeSpan_Infinite_NeverReturns(double milliseconds)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -295,7 +295,7 @@ namespace TimeMachine.Tests
         [DataRow(-2)]
         public void Frozen_TimeSpan_InvalidWait(double milliseconds)
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 

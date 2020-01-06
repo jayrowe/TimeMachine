@@ -23,7 +23,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void UtcNow_Frozen()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -57,7 +57,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void UtcNowOffset_Frozen()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
                 delorean.Freeze();
 
@@ -80,7 +80,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_Int32_TimeIsNotFrozen_ThrowsException()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(false))
             {
                 Assert.ThrowsException<InvalidOperationException>(
                     () => delorean.Advance(1));
@@ -90,7 +90,7 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_TimeSpan_TimeIsNotFrozen_ThrowsException()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(false))
             {
                 Assert.ThrowsException<InvalidOperationException>(
                     () => delorean.Advance(TimeSpan.FromMilliseconds(1)));
@@ -100,10 +100,8 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_Int32_TimeIsFrozen_AttemptToMoveTimeBackwards()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
-                delorean.Freeze();
-
                 Assert.ThrowsException<ArgumentOutOfRangeException>(
                     () => delorean.Advance(-1));
             }
@@ -112,10 +110,8 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_TimeSpan_TimeIsFrozen_AttemptToMoveTimeBackwards()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
-                delorean.Freeze();
-
                 Assert.ThrowsException<ArgumentOutOfRangeException>(
                     () => delorean.Advance(TimeSpan.FromMilliseconds(-1)));
             }
@@ -124,10 +120,8 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_StepBySingleMillisecond()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
-                delorean.Freeze();
-
                 var firstNow = TimeProvider.UtcNow;
 
                 delorean.Advance(1);
@@ -141,10 +135,8 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Advance_StepByTimeSpan()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
-                delorean.Freeze();
-
                 var firstNow = TimeProvider.UtcNow;
 
                 delorean.Advance(TimeSpan.FromSeconds(1.0));
@@ -158,10 +150,8 @@ namespace TimeMachine.Tests
         [TestMethod]
         public void Thaw_ReturnsToNormalTime()
         {
-            using (var delorean = new Delorean())
+            using (var delorean = new Delorean(true))
             {
-                delorean.Freeze();
-
                 delorean.Advance(10);
 
                 var firstNow = TimeProvider.UtcNow;
