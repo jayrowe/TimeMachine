@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -130,7 +131,33 @@ namespace TimeMachine.Tests
 
                 Assert.IsTrue(first.Wait(1));
 
-                Assert.IsFalse(second.Wait(25));
+                var finished = second.Wait(25);
+
+                Assert.IsFalse(finished);
+
+                if (finished)
+                {
+                    await second;
+                }
+            }
+        }
+
+        [TestMethod]
+        public async Task Thawed_DoesNotChokeOnFutureMilliseconds()
+        {
+            using (var delorean = new Delorean(true))
+            {
+                delorean.Advance(100000);
+
+                var token = new CancellationTokenSource();
+
+                var task = TimeProvider.Delay(int.MaxValue, token.Token);
+
+                delorean.Thaw();
+
+                token.Cancel();
+
+                await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await task);
             }
         }
 

@@ -20,7 +20,15 @@ namespace TimeMachine
         {
             lock (_lock)
             {
-                _staticNow = UtcNow;
+                Freeze(UtcNow);
+            }
+        }
+
+        internal static void Freeze(DateTime staticNow)
+        {
+            lock (_lock)
+            {
+                _staticNow = staticNow;
                 _frozen = true;
             }
         }
@@ -52,11 +60,6 @@ namespace TimeMachine
                 if (!_frozen)
                 {
                     throw new InvalidOperationException("Cannot advance time when time is not frozen");
-                }
-
-                if (time < TimeSpan.Zero)
-                {
-                    throw new ArgumentOutOfRangeException("Time cannot go backwards");
                 }
 
                 _staticNow = UtcNow + time;

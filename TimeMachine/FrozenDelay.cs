@@ -24,18 +24,21 @@ namespace TimeMachine
 
         public Task Task => _completionSource.Task;
 
-        public void Thaw()
+        public async void Thaw()
         {
-            var delay = DueTime - DateTime.UtcNow;
+            // Time could have been moved forward and then a delay set such that we'd exceed int.MaxValue
+            // to thaw this delay and allow it to continue. Call Task.Delay repeatedly to reach the desired
+            // delay.
+            long delay;
 
-            if (delay <= TimeSpan.Zero)
+            do
             {
-                Fire();
+                delay = Math.Max(0, (DueTime - DateTime.UtcNow).Ticks / TimeSpan.TicksPerMillisecond);
+                await Task.Delay((int)Math.Min(int.MaxValue, delay));
             }
-            else
-            {
-                Task.Delay(delay).ContinueWith(t => Fire());
-            }
+            while (delay > 0);
+
+            Fire();
         }
 
         public bool Fire()

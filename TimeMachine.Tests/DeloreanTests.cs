@@ -98,26 +98,6 @@ namespace TimeMachine.Tests
         }
 
         [TestMethod]
-        public void Advance_Int32_TimeIsFrozen_AttemptToMoveTimeBackwards()
-        {
-            using (var delorean = new Delorean(true))
-            {
-                Assert.ThrowsException<ArgumentOutOfRangeException>(
-                    () => delorean.Advance(-1));
-            }
-        }
-
-        [TestMethod]
-        public void Advance_TimeSpan_TimeIsFrozen_AttemptToMoveTimeBackwards()
-        {
-            using (var delorean = new Delorean(true))
-            {
-                Assert.ThrowsException<ArgumentOutOfRangeException>(
-                    () => delorean.Advance(TimeSpan.FromMilliseconds(-1)));
-            }
-        }
-
-        [TestMethod]
         public void Advance_StepBySingleMillisecond()
         {
             using (var delorean = new Delorean(true))

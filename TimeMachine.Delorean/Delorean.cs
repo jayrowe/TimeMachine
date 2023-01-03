@@ -28,6 +28,8 @@ namespace TimeMachine
 
         public void Freeze() => TimeProvider.Freeze();
 
+        public void Freeze(DateTime staticNow) => TimeProvider.Freeze(staticNow);
+
         public void Thaw() => TimeProvider.Thaw();
 
         public void Advance(TimeSpan timeSpan) => TimeProvider.Advance(timeSpan);
